@@ -35,7 +35,9 @@ const ChannelCard = React.memo(({ channel }) => (
 
 ));
 
-function Subscription() {
+ChannelCard.displayName = 'ChannelCard';
+
+function SubscriptionPage() {
   const { data: session } = useSession();
   const [channels, setChannels] = useState([]);
   const [error, setError] = useState(null);
@@ -103,4 +105,4 @@ function Subscription() {
   );
 }
 
-export default Subscription;
+export default SubscriptionPage;
