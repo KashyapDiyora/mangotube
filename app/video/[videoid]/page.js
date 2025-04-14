@@ -176,7 +176,7 @@ function VideoPage() {
             onClick={handleSubscribe}
             className="flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 transition"
           >
-            <Bell className="w-4 h-4" />{" "}
+            <Bell className={`w-4 h-4 ${subscribe ? "text-red-400" : ""}`} />{" "}
             {subscribe ? "Subscribed" : "Subscribe"}
           </button>
         </div>
@@ -206,7 +206,7 @@ function VideoPage() {
       <p className="text-xs mt-2 text-black max-w-xl">
         Description :
       </p>
-      <pre className="text-sm text-gray-500">
+      <pre className="text-sm text-gray-500 px-14 whitespace-normal">
           {video.description}
       </pre>
       <div className="mt-6">
