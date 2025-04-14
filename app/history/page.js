@@ -83,7 +83,7 @@ function History() {
             No History Found Yet
           </h1>
           <p className="text-gray-500 mt-2">
-            Videos you've watched will appear here.
+            Videos you have watched will appear here.
           </p>
         </div>
       )}

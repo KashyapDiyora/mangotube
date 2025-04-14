@@ -2,7 +2,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import FileUpload from "@/app/components/FileUpload";
 import { Loader2 } from "lucide-react";
 
@@ -23,7 +23,7 @@ function Video() {
     } else {
       setLoading(false);
     }
-  }, [session, status]);
+  }, [session, status,router]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -37,13 +37,13 @@ function Video() {
   });
 
   const handleSubmit = async(event) => {
-    setDataUploading(true);
     event.preventDefault();
     
     if(!title || !description || !video.trim() || !thumbnail.trim()){
       setError("Please give required field");
       return;
     }
+    setDataUploading(true);
     try {
       const res = await fetch("/api/video-upload",{
         method : "POST",
@@ -59,7 +59,6 @@ function Video() {
       const data = await res.json();
       if(res.status === 201){
         setError(null);
-        setDataUploading(false);
         router.push("/");
       }else if(res.status === 400){
         setError(data.error);
@@ -69,6 +68,7 @@ function Video() {
     } catch (error) {
       setError("Something went wrong");
     }
+    setDataUploading(false);
   };
 
   const handleVideoSuccess = useCallback((res) => {
