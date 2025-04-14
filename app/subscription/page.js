@@ -93,7 +93,7 @@ function Subscription() {
       <h1 className="text-2xl font-semibold mb-4 text-center">Subscribed Channels</h1>
       {error && <p className="text-red-500 text-xl">{error}</p>}
       {channels.length === 0 ? (
-        <p className="text-gray-500 text-center">You haven't subscribed to any channels yet.</p>
+        <p className="text-gray-500 text-center">You have not subscribed to any channels yet.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
           {renderedChannels}

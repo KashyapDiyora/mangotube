@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react";
 import Comment from "@/app/components/Comment";
 import { useRouter } from "next/navigation";
 
-function page() {
+function VideoPage() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ function page() {
   }, [session, status]);
 
   const params = useParams();
-  const { videoid } = params;
+  const videoid = useParams().videoid?.toString();
   const [video, setVideo] = useState({});
   const [subscribe, setSubscribe] = useState(false);
   const [like, setLike] = useState(false);
@@ -218,4 +218,4 @@ function page() {
   );
 }
 
-export default page;
+export default VideoPage;
