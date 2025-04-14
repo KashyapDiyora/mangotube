@@ -62,13 +62,13 @@ export default function TopBarRight() {
   };
 
   const upload = () => {
-    let channelName = data.user?.name;
+    let channelName = session.user?.name;
     channelName = channelName.replace(" ","_")
     router.push(`/channel/${channelName}/video`);
   };
 
   const myChannel = () => {
-    let channelName = data.user?.name;
+    let channelName = session.user?.name;
     channelName = channelName.replace(" ","_")
     router.push(`/channel/${channelName}`);
   }
