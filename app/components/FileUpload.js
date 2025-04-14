@@ -7,7 +7,8 @@ export default function FileUpload({
     onProgress,
     fileType = "image",
     id,
-    styleProperty=""
+    styleProperty="",
+    isuploading 
 }) {
 
     const [uploading, setUploading] = useState(false);
@@ -40,7 +41,7 @@ export default function FileUpload({
         <div className="App">
             <IKUpload
                 fileName={fileType === "video" ? "video" : "image"}
-                validateFile={(file) => file.size < 2000000}
+                validateFile={(file) => file.size < 30 * 1024 * 1024}
                 onError={onError}
                 onSuccess={handleSuccess}
                 onUploadProgress={onUploadProgress}
@@ -51,7 +52,7 @@ export default function FileUpload({
                 folder={fileType === "video" ? "/videos" : "/images"}
                 id={id}
             />
-            {uploading && (
+            {uploading  && (
                 <div className="flex items-center gap-2 text-sm text-primary">
                     <Loader2 className="w-4 h-4 animate-spin" />
                     <span>Uploading...</span>

@@ -57,6 +57,8 @@ function Video() {
         })
       });
       const data = await res.json();
+      console.log(data);
+      
       if(res.status === 201){
         setError(null);
         router.push("/");
@@ -193,7 +195,7 @@ function Video() {
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
                           MP4 Video File <br />
-                          Max file size: 500MB
+                          Max file size: 30MB
                         </p>
                       </div>
                       <FileUpload
@@ -222,7 +224,7 @@ function Video() {
 
                 <div className="text-center">
                   Need help?{" "}
-                  <Link href={"/help"} className="text-gray-700 font-bold">
+                  <Link href={"/"} className="text-gray-700 font-bold">
                     Contact Support
                   </Link>
                 </div>
