@@ -6,12 +6,15 @@ import {useSelector,useDispatch} from "react-redux";
 import {incrementPageNo} from "@/lib/slices/pageNo.js"
 import {addVideos} from "@/lib/slices/videos"
 import {store} from "@/lib/store.js";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 function VideoCard() {
   const videos = useSelector((state) => state.videos.videos);
   const dispatch = useDispatch();
   const [apiCalling, setApiCalling] = useState(false);
   const router = useRouter();
+  dayjs.extend(relativeTime);
   // const page = useSelector((state) => state.pageNo.page);
   
 
@@ -113,7 +116,7 @@ function VideoCard() {
                   <div className="font-medium line-clamp-2">{video.title}</div>
                   <div className="text-gray-600">{video.owner?.username}</div>
                   <div className="text-gray-500 text-xs">
-                    {video.views || "1K"} views • 1 month ago
+                    {video.views || "0"} views • {dayjs(video.createdAt).fromNow()}
                   </div>
                 </div>
               </div>

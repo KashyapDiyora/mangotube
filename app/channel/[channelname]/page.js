@@ -7,6 +7,8 @@ import { authOption } from "@/lib/auth";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 import SubscribeButton from "@/app/components/SubscribeButton";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 export default async function ChannelPage({ params }) {
   await ConnectToDatabase();
@@ -15,7 +17,7 @@ export default async function ChannelPage({ params }) {
     redirect("/login");
   }
   const {channelname} = await params;
-  
+  dayjs.extend(relativeTime);
   const username = channelname.replace("_"," ");
 
   // Fetch user (channel)
@@ -55,17 +57,6 @@ export default async function ChannelPage({ params }) {
               className="object-cover w-full h-full"
             />
           </div>
-
-          {/* <div className="flex-1">
-            <h1 className="text-2xl font-bold">{user.username}</h1>
-            <p className="text-sm text-gray-500">
-              {subscriber} subscribers
-            </p>
-            <p className="mt-2 text-gray-600 text-sm max-w-2xl">
-              {user.description || "No channel description yet."}
-            </p>
-          </div> */}
-
           <SubscribeButton username={user?.username} channelId={user?._id.toString()} userId={session?.user.id} />
         </div>
       </div>
@@ -89,7 +80,7 @@ export default async function ChannelPage({ params }) {
               <div className="mt-3 text-sm text-black space-y-1">
                 <div className="font-medium line-clamp-2">{video.title}</div>
                 <div className="text-gray-500 text-xs">
-                  {video.views || "1K"} views • 1 month ago
+                  {video.views || "0"} views • {dayjs(video.createdAt).fromNow()}
                 </div>
               </div>
             </div>
