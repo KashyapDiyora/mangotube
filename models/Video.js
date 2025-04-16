@@ -3,13 +3,11 @@ import { models ,Schema,model} from "mongoose";
 const VideoSchema = new Schema({
     videoUrl : {
         type : String,
-        required : true,
-        unique : true
+        required: true
     },
     thumbnailUrl : {
         type : String,
-        required : true,
-        unique : true
+        required: true
     },
     owner : {
         type : Schema.Types.ObjectId,
@@ -17,11 +15,11 @@ const VideoSchema = new Schema({
     },
     title : {
         type : String,
-        requred : true
+        required: true
     },
     description : {
         type : String,
-        requred : true
+        required: true
     },
     duration : {
         type : Number
@@ -33,7 +31,7 @@ const VideoSchema = new Schema({
     isPublish : {
         type : Boolean,
         default : true,
-        required : true,
+        required: true
     },
 
 },{

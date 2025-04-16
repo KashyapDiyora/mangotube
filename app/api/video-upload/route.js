@@ -8,20 +8,21 @@ export async function POST(request){
     try {
         const body = await request.json();
         const {videoUrl,thumbnailUrl,email,title,description,} = body;
-
+        
         if(!videoUrl || !thumbnailUrl || !title || !description) {
-            return NextResponse,json({
+            return NextResponse.json({
                 error: 'All fields are required',
             }, { status: 400 });
         }   
 
         await ConnectToDatabase();
         const user = await User.findOne({email});
-        if(user?._id){
+        const userId = user?._id;
+        if(userId){
             const video = await Video.create({
                 videoUrl,
                 thumbnailUrl,
-                owner : user._id,
+                owner : userId,
                 title,
                 description,
             });
@@ -40,7 +41,7 @@ export async function POST(request){
 
     } catch (error) {
         return NextResponse.json({
-            error: 'Something went wrong',
+            error: `Something went wrong,${error?.message}`,
         }, { status: 500 });
     }
 }

@@ -107,7 +107,12 @@ export default function TopBarRight() {
                 </button>
                 <div ref={userRef} className="flex items-center">
                   <button className="rounded-full relative cursor-pointer" onClick={toggleDropdown}>
-                    <Image src={userImage} className="rounded-full object-cover" width={25} height={25} alt="user" />
+                    <Image 
+                    src={userImage} 
+                    className="rounded-full object-cover" 
+                    width={25} 
+                    height={25} 
+                    alt="user" />
                   </button>
                   {isOpen && (
                     <div className="absolute z-10 bg-gray-100 rounded-lg p-2 left-[25%] right-0 top-[150%] shadow-lg">

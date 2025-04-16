@@ -20,7 +20,7 @@ export async function POST(request) {
         }
 
         if(existingUser?.username === username){
-            return NextResponse.json({ message: "This username is alreadt taken" }, { status: 400 });
+            return NextResponse.json({ message: "This username is already taken" }, { status: 400 });
         }
 
         const newUser = await User.create({

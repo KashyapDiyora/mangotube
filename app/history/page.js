@@ -20,7 +20,8 @@ function History() {
     });
     const data = await res.json();
     if (data.ok) {
-      setHistory(data.history);
+      const reverseHistory = data.history?.reverse();
+      setHistory(reverseHistory);
     } else if (data.message === "Not authenticated") {
       router.push("/login");
     }

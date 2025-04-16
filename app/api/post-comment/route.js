@@ -9,6 +9,7 @@ export async function POST(request){
     }
     
     try {
+        await ConnectToDatabase();
         const comment = await Comment.create({
             commentMessage,
             owner : userId,

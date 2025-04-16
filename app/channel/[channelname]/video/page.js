@@ -57,7 +57,6 @@ function Video() {
         })
       });
       const data = await res.json();
-      console.log(data);
       
       if(res.status === 201){
         setError(null);

@@ -21,8 +21,8 @@ export async function GET(request) {
       .populate({
         path: "watchHistory",
         select: "_id title thumbnailUrl views createdAt",
-      });
-
+      }).lean();
+      
       return NextResponse.json({
         ok : true,
         history : history.watchHistory,

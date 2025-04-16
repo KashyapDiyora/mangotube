@@ -1,12 +1,15 @@
 import {useState,useEffect} from 'react';
 import Image from 'next/image';
 import { Loader2 } from 'lucide-react';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 function Comment({userId,videoId,userImage}) {
 
     const [comments,setComments] = useState([]);
     const [newComment,setNewComment] = useState("");
     const [commentPostLoading,setCommentPostLoading] = useState(false);
+    dayjs.extend(relativeTime);
 
     const fetchComment = async() => {
       const res = await fetch("/api/get-comment/",{
@@ -94,7 +97,7 @@ function Comment({userId,videoId,userImage}) {
               <p className="font-semibold">
                 {comment.owner.username}
                 <span className="text-sm text-gray-500 ml-2">
-                  {comment.createdAt}
+                  {dayjs(comment.createdAt).fromNow()}
                 </span>
               </p>
               <p className="text-sm">{comment.commentMessage}</p>
